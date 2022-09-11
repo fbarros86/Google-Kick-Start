@@ -65,7 +65,7 @@ for test in range(tests):
         goal.add(x+1)
     control=0
     for row in range(n*n):
-        l=raw_input() # próxima linha a analisar
+        l=input() # próxima linha a analisar
         if ((row+1)%n==1): # se for um novo quadrado
             quad={}
             for x in range(n):
