@@ -1,12 +1,6 @@
-def readRow (row):
-    inicio = 0
-    l=[]
-    for x in range(1,len(row)):
-        if (row[x]==' '):
-            l.append(int(row[inicio:x]))
-            inicio=x+1
-    l.append(int(row[inicio:len(row)]))
-    return l
+def readRow (str):
+    l = str.split()
+    return [int(x) for x in l]
 
 
 tests = int (input())

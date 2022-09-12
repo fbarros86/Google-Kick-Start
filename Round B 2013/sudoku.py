@@ -54,26 +54,26 @@ def readRow (row):
     return l
 
 
-tests = int (input()) # número de testes
-results = {} # resultado dos diferentes testes
+tests = int (input()) # number of tests
+results = {} # results of all the tests
 for test in range(tests):
-    n = int(input()) # tamanho do sudoku (n^2)
-    col={} # números de cada coluna
-    goal=set() # conjunto de números que cada coluna/linha/quadrado tem que ter
+    n = int(input()) # sudoku size (n^2)
+    col={} # numbers of each column 
+    goal=set() # set of numbers each column/row/square needs
     for x in range(n*n):
         col[x]=set()
         goal.add(x+1)
     control=0
     for row in range(n*n):
-        l=input() # próxima linha a analisar
-        if ((row+1)%n==1): # se for um novo quadrado
+        l=input() # next line
+        if ((row+1)%n==1): # see if it is a new square
             quad={}
             for x in range(n):
                 quad[x]=set()
         if (control==0):
-            lin=set() # conjunto de números na linha analisada
+            lin=set() # set of numbers in the line in question
             values=readRow(l)
-            for c in range(n*n): # para cada valor verificar se este ainda não apareceu e acrescentá-lo
+            for c in range(n*n): # for each value check if it hasn+t appeared and if not adding it
                 res=values[c]
                 if (res in col[c] or res in lin or res in quad[c//n]):
                     control=1
@@ -84,7 +84,7 @@ for test in range(tests):
                     quad[c//n].add (res)
             if (lin!=goal): control=1
     results[test]=control
-for x in range(tests): #Imprimir o resultado de cada teste
+for x in range(tests): # printing each test result
     result=results[x]
     test = str(x+1)
     if (result==0): print('Case #'+ test +': '+'Yes')

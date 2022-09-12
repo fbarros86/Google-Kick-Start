@@ -10,11 +10,11 @@ def replacePbs(pbs, x, power):
         if (x[0]==pbs[i][0] and x[1]==pbs[i][1]): pbs[i] = (pbs[i][0] ,pbs[i][1] ,power,pbs[i][3])
 
 def findWay (maze, ri, ci, rf, cf, rows, columns):
-    vis={(ri,ci)} # set com os pontos já visitados
-    visInfo={(ri,ci):(maze[ri][ci],0)}
-    ret = -1 # saber se já encontrámos um caminho
-    ant = 0 # número de passos que foram dados anteriormente
-    pbs = [(ri,ci)] # lista com possibilidades de movimento com: coordenadas, power e nº de passos
+    vis={(ri,ci)} # set with cells already visited 
+    visInfo={(ri,ci):(maze[ri][ci],0)} # dictionary with information of the current way found to each visited point
+    ret = -1 # to know if we've already found a way
+    ant = 0 # number of steps used in the previous iteration
+    pbs = [(ri,ci)] # list with possibilities of movement
     while pbs:
         (r,c)=pbs[0]
         p = visInfo[(r,c)][0]
@@ -42,23 +42,23 @@ def split_int (str):
 tests = int (input())
 results = {}
 for test in range(tests):
-    l = input() # lê a linha das dimensões do tabuleiro
+    l = input() # get board dimensions
     l =split_int(l)
     row=l[0]
     col=l[1]
-    l = input() # lê as coordenadas inciais e finais
+    l = input() # get entrance andn exit cells
     l = split_int(l)
     ri =  l[0]
     ci =  l[1]
     rf =  l[2]
     cf =  l[3]
     maze=[]
-    for r in range(row): #cria lista de listas que representa o tabuleiro
+    for r in range(row): #building a list of lists that represents the maze
         l = input()
         l = split_int(l)
         maze.append(l)
         
-    results[test] = findWay (maze, ri, ci, rf, cf,row,col)
+    results[test] = findWay (maze, ri, ci, rf, cf,row,col) #finds the best way using breadth-first search
 for x in range(tests):
     result=results[x]
     test = str(x+1)

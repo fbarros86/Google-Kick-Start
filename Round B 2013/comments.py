@@ -56,15 +56,15 @@ int main() {
 
 '''
 
-count = 0
-res = ""
+count = 0 #count number of comments that still need to be closed
+res = "" # final string that will be returned
 for line in sys.stdin:
     x=0
     while x<(len(line)):
         if (line[x]=='/' and line[x+1]=='*'):
             count+=1
             x+=1
-        elif (count==0):res += line[x]
+        elif (count==0):res += line[x] # if it is not commented add to res
         elif (line[x]=='*' and line[x+1]=='/'):
             count-=1
             x+=1
